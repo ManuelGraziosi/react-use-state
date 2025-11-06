@@ -6,13 +6,14 @@ import { useState } from 'react'
 function App() {
   const [selecedLanguage, setSelectedLanguage] = useState({
     id: 0,
-    title: "TITOLO",
-    description: "DESCRIZIONE"
+    title: "",
+    description: "scegli un linguaggio..."
   });
 
   return (
     <>
       <main>
+        <h1>Learn Web Development</h1>
         <div className="container my-5">
           <section className=''>
             {/* sezione dei bottoni */}
@@ -23,7 +24,7 @@ function App() {
               <button className="btn">click</button>
               <button className="btn">click</button> */}
               {
-                languages.map((curLanguage) => <button className="btn btn-primary" key={curLanguage.id} onClick={() => console.log(curLanguage.description)}>{curLanguage.title}</button>)
+                languages.map((curLanguage) => <button className={curLanguage.id === selecedLanguage.id ? "btn btn-warning" : "btn btn-primary"} key={curLanguage.id} onClick={() => setSelectedLanguage(curLanguage)}>{curLanguage.title}</button>)
               }
             </div>
             {/* blocco di output */}
