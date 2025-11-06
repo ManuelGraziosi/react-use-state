@@ -4,11 +4,14 @@ import languages from './assets/languages'
 import { useState } from 'react'
 
 function App() {
-  const [selecedLanguage, setSelectedLanguage] = useState({
+
+  const initialOutput = {
     id: 0,
     title: "",
     description: "scegli un linguaggio..."
-  });
+  }
+
+  const [selecedLanguage, setSelectedLanguage] = useState(initialOutput);
 
   return (
     <>
@@ -24,7 +27,7 @@ function App() {
               <button className="btn">click</button>
               <button className="btn">click</button> */}
               {
-                languages.map((curLanguage) => <button className={curLanguage.id === selecedLanguage.id ? "btn btn-warning" : "btn btn-primary"} key={curLanguage.id} onClick={() => setSelectedLanguage(curLanguage)}>{curLanguage.title}</button>)
+                languages.map((curLanguage) => <button className={curLanguage.id === selecedLanguage.id ? "btn btn-warning" : "btn btn-primary"} key={curLanguage.id} onClick={() => (curLanguage.id === selecedLanguage.id ? setSelectedLanguage(initialOutput) : setSelectedLanguage(curLanguage))}>{curLanguage.title}</button>)
               }
             </div>
             {/* blocco di output */}
